@@ -6,5 +6,8 @@ services:
   - docker
 
 after_success:
+  - docker network create --driver bridge sem-group-d
+  - docker pull mongo
+  - docker run -d --name mongo-dbserver --network sem-group-d mongo
   - docker build -t sem-group-d .
-  - docker run sem-group-d
+  - docker run --network sem-group-d sem-group-d
