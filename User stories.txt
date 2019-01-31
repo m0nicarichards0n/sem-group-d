@@ -1,5 +1,5 @@
 Example: 
-As a user, I want to upload photos so that I can share photos with others.
+As aÂ user,Â I wantÂ to upload photosÂ so thatÂ I can share photos with others.
 
 The organisation has asked for the following reports to be generated:
 * All the countries in the world organised by largest population to smallest.
@@ -8,12 +8,12 @@ o As a user, I want to be able to sort the countries of the world by largest to 
 o As a user, I want to be able to sort the countries of a continent by largest to smallest population so that I can easily view the largest population in the continents.
 * All the countries in a region organised by largest population to smallest.
 o As a user, I want to be able to sort the countries in a region by largest to smallest population so that I can easily view the largest population in the region.
-* The top N populated countries in the world where N is provided by the user.
-o As a user, I want to be able to define the number of countries in the world I wish to see that have the largest population so that I can see the most populated countries 
-* The top N populated countries in the continent where N is provided by the user.
-o As a user, I want to be able to define the number of countries in the continents I wish to see that have the largest population so that I can see the most populated countries 
-* The top N populated countries in a region where N is provided by the user.
-o As a user, I want to be able to define the number of countries in the regions I wish to see that have the largest population so that I can see the most populated countries 
+* The topÂ NÂ populated countries in the world whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated countries in the world
+* The topÂ NÂ populated countries in the continent whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated countries in the continent
+* The topÂ NÂ populated countries in a region whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated countries in the region
 * All the cities in the world organised by largest population to smallest.
 o As a user, I want to be able to sort the cities of the world by largest to smallest population so that I can easily view the largest population of cities in the world.
 * All the cities in a continent organised by largest population to smallest.
@@ -25,28 +25,28 @@ o As a user, I want to be able to sort the cities in countries from largest to s
 
 * All the cities in a district organised by largest population to smallest.
 o As a user, I want to be able to sort the cities in districts from largest to smallest population so that I can easily view the largest population of cities in districts.
-* The top N populated cities in the world where N is provided by the user.
-o As a user, I want to be able to define the number of cities in the world I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated cities in a continent where N is provided by the user.
-o As a user, I want to be able to define the number of cities in the continents I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated cities in a region where N is provided by the user.
-o As a user, I want to be able to define the number of cities in the regions I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated cities in a country where N is provided by the user.
-o As a user, I want to be able to define the number of cities in the countries I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated cities in a district where N is provided by the user.
-o As a user, I want to be able to define the number of cities in the districts I wish to see that have the largest population so that I can see the most populated cities 
+* The topÂ NÂ populated cities in the world whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated cities in the world 
+* The topÂ NÂ populated cities in a continent whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated cities in the continent 
+* The topÂ NÂ populated cities in a region whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated cities in the region 
+* The topÂ NÂ populated cities in a country whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated cities in the country  
+* The topÂ NÂ populated cities in a district whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated cities in the district 
 * All the capital cities in the world organised by largest population to smallest.
 o As a user, I want to be able to sort the capital cities of the world from largest to smallest population so that I can easily view the largest population of capital cities in the world.
 * All the capital cities in a continent organised by largest population to smallest.
 o As a user, I want to be able to sort the capital cities of continents from largest to smallest population so that I can easily view the largest population of capital cities in continents.
 * All the capital cities in a region organised by largest to smallest.
 o As a user, I want to be able to sort the capital cities of regions from largest to smallest population so that I can easily view the largest population of capital cities in regions.
-* The top N populated capital cities in the world where N is provided by the user.
-o As a user, I want to be able to define the number of capital cities in the world I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated capital cities in a continent where N is provided by the user.
-o As a user, I want to be able to define the number of capital cities in the continents I wish to see that have the largest population so that I can see the most populated cities 
-* The top N populated capital cities in a region where N is provided by the user.
-o As a user, I want to be able to define the number of capital cities in the regions I wish to see that have the largest population so that I can see the most populated cities 
+* The topÂ NÂ populated capital cities in the world whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated capital cities in the world 
+* The topÂ NÂ populated capital cities in a continent whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated capital cities in the continent  
+* The topÂ NÂ populated capital cities in a region whereÂ NÂ is provided by the user.
+o As a user, I want to be able to specify how many items I want to see in an output report based off the top populated capital cities in the region 
 * The population of people, people living in cities, and people not living in cities in each continent.
 o As a user, I want to be able to see the number of people living in cities and not living in cities for each continent so that I can compare the two values and compare the continents.
 * The population of people, people living in cities, and people not living in cities in each region.
