@@ -20,6 +20,6 @@ Members of Group D shall conduct themselves in an appropriate way, which is outl
 # Code Policies / Naming Conventions
 
 * Each merge into the develop branch requires a pull request approved by at least one other member of the team, not including themselves.
-* Feature branches are required to be named with an associcated Zube ticket number and a brief description - e.g. feature/15-AGoodFeatureNeedingDone.
+* Feature branches are required to be named with an associcated Github number and a brief description - e.g. feature/15-AGoodFeatureNeedingDone.
 * Zube tickets need to be updated in accordance with the pull requests.
 * Commit messages must be in the imperative mood.
