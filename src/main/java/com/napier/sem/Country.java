@@ -23,4 +23,23 @@ public class Country
     public Country(){
 
     }
+    public void displayTable()
+    {
+        System.out.println(
+                "| " + Code + " | "
+                + Name + " | "
+                + Continent + " | "
+                + Region + " | "
+                + SurfaceArea + " | "
+                + IndepYear + " | "
+                + Population + " | "
+                + LifeExpectancy + " | "
+                + GNP + " | "
+                + GNPOld + " | "
+                + LocalName + " | "
+                + GovernmentForm + " | "
+                + HeadOfState + " | "
+                + Capital + " | "
+                + Code2 + " |\n");
+    }
 }
