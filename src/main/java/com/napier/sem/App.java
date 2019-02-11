@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class App
 {
@@ -11,11 +12,55 @@ public class App
 
         // Connect to database
         a.connect();
-        // Get Employee
-        a.getCountry();
+        // call sql query
+        String query =
+                "SELECT * " +
+                        "FROM country "+
+                        "ORDER BY population DESC";
+        query = a.selectQuery();
+        a.getCountry(query);
 
         // Disconnect from database
         a.disconnect();
+    }
+    private String selectQuery(){
+        String query ="";
+        System.out.println("Available reports: ");
+        System.out.println("1. All the countries in the world organised by largest population to smallest.");
+        System.out.println("2. All the countries in a continent organised by largest population to smallest");
+        System.out.println("3. All the countries in a region organised by largest population to smallest.");
+        System.out.println("4. The top N populated countries in the world where N is provided by the user.");
+        System.out.println("5. The top N populated countries in a continent where N is provided by the user.");
+        System.out.println("Please select report number: ");
+        Scanner scanner = new Scanner(System.in);
+        String reportNumber = scanner.next();
+
+        String N;
+        switch (reportNumber){
+            case "1":
+                query = "SELECT name FROM country ORDER BY population DESC";
+                break;
+            case "2":
+                query = "SELECT name, continent, population FROM country ORDER BY continent, population DESC";
+                break;
+            case "3":
+                query = "SELECT name, region, population FROM country ORDER BY region, population DESC";
+                break;
+            case "4":
+                System.out.println("How many top populated countries in the world would you like to see? ");
+                scanner = new Scanner(System.in);
+                N = scanner.nextLine();
+                query = "SELECT name, population FROM country ORDER BY population DESC LIMIT " + N;
+                break;
+            case "5":
+                System.out.println("How many top populated countries in a continent would you like to see? ");
+                scanner = new Scanner(System.in);
+                N = scanner.nextLine();
+                query = "SELECT name, population FROM country WHERE continent = Europe ORDER BY population DESC LIMIT " + N;
+                break;
+        }
+
+        return query;
     }
 
     /**
@@ -46,7 +91,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(10000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -82,20 +127,16 @@ public class App
             }
         }
     }
-
-    public void getCountry()
+    public void getCountry(String query)
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT * " +
-                    "FROM country "+
-                    "ORDER BY population DESC";
+
             // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
+            ResultSet rset = stmt.executeQuery(query);
             // Check one is returned
             while (rset.next())
             {
