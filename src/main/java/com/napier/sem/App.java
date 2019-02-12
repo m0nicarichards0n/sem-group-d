@@ -9,15 +9,10 @@ public class App
     {
         // Create new Application
         App a = new App();
-
         // Connect to database
         a.connect();
         // call sql query
-        String query =
-                "SELECT * " +
-                        "FROM country "+
-                        "ORDER BY population DESC";
-        query = a.selectQuery();
+        String query = a.selectQuery();
         a.getCountry(query);
 
         // Disconnect from database
@@ -50,6 +45,7 @@ public class App
                 System.out.println("How many top populated countries in the world would you like to see? ");
                 scanner = new Scanner(System.in);
                 N = scanner.nextLine();
+                System.out.println("SELECT name, population FROM country ORDER BY population DESC LIMIT " + N);
                 query = "SELECT name, population FROM country ORDER BY population DESC LIMIT " + N;
                 break;
             case "5":
@@ -138,26 +134,27 @@ public class App
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(query);
             // Check one is returned
+            ResultSetMetaData rsmd = rset.getMetaData();
             while (rset.next())
             {
                 Country country = new Country();
-
-                country.Name = rset.getString("Name");
-                country.Continent = rset.getString("Continent");
-                country.Region = rset.getString("Region");
-                country.SurfaceArea = rset.getInt("SurfaceArea");
-                country.IndepYear = rset.getInt("IndepYear");
-                country.Population = rset.getInt("Population");
-                country.LifeExpectancy = rset.getInt("LifeExpectancy");
-                country.GNP = rset.getInt("GNP");
-                country.GNPOld = rset.getInt("GNPOld");
-                country.LocalName = rset.getString("LocalName");
-                country.GovernmentForm = rset.getString("GovernmentForm");
-                country.HeadOfState = rset.getString("HeadOfState");
-                country.Capital = rset.getString("Capital");
-                country.Code2 = rset.getString("Code2");
+                try { country.Name = rset.getString("Name");} catch (Exception e){country.Name = null;};
+                try { country.Continent = rset.getString("Continent");} catch (Exception e){country.Continent = null;};
+                try { country.Region = rset.getString("Region");} catch (Exception e){country.Region = null;};
+                try { country.SurfaceArea = rset.getInt("SurfaceArea");} catch (Exception e){country.SurfaceArea = 0.0;};
+                try { country.IndepYear = rset.getInt("IndepYear");} catch (Exception e){country.IndepYear = 0000;};
+                try { country.Population = rset.getInt("Population");} catch (Exception e){country.Population = 0;};
+                try { country.LifeExpectancy = rset.getInt("LifeExpectancy");} catch (Exception e){country.LifeExpectancy = 0.0;};
+                try { country.GNP = rset.getInt("GNP");} catch (Exception e){country.GNP = 0.0;};
+                try { country.GNPOld = rset.getInt("GNPOld");} catch (Exception e){country.GNPOld = 0.0;};
+                try { country.LocalName = rset.getString("LocalName");} catch (Exception e){country.LocalName = null;};
+                try { country.GovernmentForm = rset.getString("GovernmentForm");} catch (Exception e){country.GovernmentForm = null;};
+                try { country.HeadOfState = rset.getString("HeadOfState");} catch (Exception e){country.HeadOfState = null;};
+                try { country.Capital = rset.getString("Capital");} catch (Exception e){country.Capital = null;};
+                try { country.Code2 = rset.getString("Code2");} catch (Exception e){country.Code2 = null;};
                 country.displayTable();
             }
+            getCountry(selectQuery());
         }
         catch (Exception e)
         {
