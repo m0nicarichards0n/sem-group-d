@@ -23,3 +23,4 @@ Members of Group D shall conduct themselves in an appropriate way, which is outl
 * Feature branches are required to be named with an associcated Github number and a brief description - e.g. feature/15-AGoodFeatureNeedingDone.
 * Zube tickets need to be updated in accordance with the pull requests.
 * Commit messages must be in the imperative mood.
+* Include comments on all code.
