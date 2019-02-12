@@ -52,7 +52,7 @@ public class App
                 System.out.println("How many top populated countries in a continent would you like to see? ");
                 scanner = new Scanner(System.in);
                 N = scanner.nextLine();
-                query = "SELECT name, population FROM country WHERE continent = Europe ORDER BY population DESC LIMIT " + N;
+                query = "SELECT name, population FROM country WHERE Continent = 'Europe' ORDER BY population DESC LIMIT " + N;
                 break;
         }
 
