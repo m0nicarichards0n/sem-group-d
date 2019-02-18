@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App
@@ -13,7 +14,7 @@ public class App
         a.connect();
         // call sql query
         String query = a.selectQuery();
-        a.getCountry(query);
+        a.getQuery(query);
 
         // Disconnect from database
         a.disconnect();
@@ -123,7 +124,7 @@ public class App
             }
         }
     }
-    public void getCountry(String query)
+    public void getQuery(String query)
     {
         try
         {
@@ -135,6 +136,12 @@ public class App
             ResultSet rset = stmt.executeQuery(query);
             // Check one is returned
             ResultSetMetaData rsmd = rset.getMetaData();
+            ArrayList<String> result  = new ArrayList<String>();
+            for (int i = 0; i<rsmd.getColumnCount(); i++){
+                System.out.print(rsmd.getColumnName(i+1) + " | ");
+                result.add(rsmd.getColumnName(i+1));
+            }
+            System.out.print("\n");
             while (rset.next())
             {
                 Country country = new Country();
@@ -154,7 +161,7 @@ public class App
                 try { country.Code2 = rset.getString("Code2");} catch (Exception e){country.Code2 = null;};
                 country.displayTable();
             }
-            getCountry(selectQuery());
+            getQuery(selectQuery());
         }
         catch (Exception e)
         {
