@@ -2,9 +2,9 @@ The organisation has asked for the following reports to be generated:
 * All the countries in the world organised by largest population to smallest.
   * As a user, I want to be able to sort the countries of the world by largest to smallest population so that I can easily view the largest population in the world.
 * All the countries in a continent organised by largest population to smallest.
- * As a user, I want to be able to sort the countries of a continent by largest to smallest population so that I can easily view the largest population in the continents.
+  * As a user, I want to be able to sort the countries of a continent by largest to smallest population so that I can easily view the largest population in the continents.
 * All the countries in a region organised by largest population to smallest.
- * As a user, I want to be able to sort the countries in a region by largest to smallest population so that I can easily view the largest population in the region.
+  * As a user, I want to be able to sort the countries in a region by largest to smallest population so that I can easily view the largest population in the region.
 * The top N populated countries in the world where N is provided by the user.
  * As a user, I want to be able to specify how many items I want to see in an output report based off the top populated countries in the world
 * The top N populated countries in the continent where N is provided by the user.
