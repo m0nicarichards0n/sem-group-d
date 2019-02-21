@@ -1,6 +1,6 @@
 The organisation has asked for the following reports to be generated:
-# All the countries in the world organised by largest population to smallest.
-* As a user, I want to be able to sort the countries of the world by largest to smallest population so that I can easily view the largest population in the world.
+* All the countries in the world organised by largest population to smallest.
+  * As a user, I want to be able to sort the countries of the world by largest to smallest population so that I can easily view the largest population in the world.
 # All the countries in a continent organised by largest population to smallest.
 * As a user, I want to be able to sort the countries of a continent by largest to smallest population so that I can easily view the largest population in the continents.
 # All the countries in a region organised by largest population to smallest.
