@@ -1,69 +1,29 @@
 package com.napier.sem;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // Create new Application
         App a = new App();
+        //Instantiate new set of results
+        DisplayResults displayResults = new DisplayResults();
         // Connect to database
         a.connect();
-        // call sql query
-        String query = a.selectQuery();
-        a.getQuery(query);
+
+        //Display main menu
+        a.mainMenu();
 
         // Disconnect from database
-        a.disconnect();
-    }
-    private String selectQuery(){
-        String query ="";
-        System.out.println("Available reports: ");
-        System.out.println("1. All the countries in the world organised by largest population to smallest.");
-        System.out.println("2. All the countries in a continent organised by largest population to smallest");
-        System.out.println("3. All the countries in a region organised by largest population to smallest.");
-        System.out.println("4. The top N populated countries in the world where N is provided by the user.");
-        System.out.println("5. The top N populated countries in a continent where N is provided by the user.");
-        System.out.println("Please select report number: ");
-        Scanner scanner = new Scanner(System.in);
-        String reportNumber = scanner.next();
-
-        String N;
-        switch (reportNumber){
-            case "1":
-                query = "SELECT name FROM country ORDER BY population DESC";
-                break;
-            case "2":
-                query = "SELECT name, continent, population FROM country ORDER BY continent, population DESC";
-                break;
-            case "3":
-                query = "SELECT name, region, population FROM country ORDER BY region, population DESC";
-                break;
-            case "4":
-                System.out.println("How many top populated countries in the world would you like to see? ");
-                scanner = new Scanner(System.in);
-                N = scanner.nextLine();
-                System.out.println("SELECT name, population FROM country ORDER BY population DESC LIMIT " + N);
-                query = "SELECT name, population FROM country ORDER BY population DESC LIMIT " + N;
-                break;
-            case "5":
-                System.out.println("How many top populated countries in a continent would you like to see? ");
-                scanner = new Scanner(System.in);
-                N = scanner.nextLine();
-                query = "SELECT name, population FROM country WHERE Continent = 'Europe' ORDER BY population DESC LIMIT " + N;
-                break;
-        }
-
-        return query;
+        //a.disconnect();
     }
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    public static Connection con = null;
 
     /**
      * Connect to the MySQL database.
@@ -124,49 +84,96 @@ public class App
             }
         }
     }
-    public void getQuery(String query)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
 
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(query);
-            // Check one is returned
-            ResultSetMetaData rsmd = rset.getMetaData();
-            ArrayList<String> result  = new ArrayList<String>();
-            for (int i = 0; i<rsmd.getColumnCount(); i++){
-                System.out.print(rsmd.getColumnName(i+1) + " | ");
-                result.add(rsmd.getColumnName(i+1));
-            }
-            System.out.print("\n");
-            while (rset.next())
+    public String mainMenu() {
+        boolean validInput;
+        do {
+            validInput = true;
+            //Display main menu options
+            System.out.println("Welcome to the Population Database!");
+            System.out.println("I would like to view...");
+            System.out.println("1. All the countries in...");
+            System.out.println("2. All the cities in...");
+            System.out.println("3. All the capital cities in...");
+            System.out.println("4. The population of...");
+
+            //Read user input
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.next();
+            scanner.close();
+
+            //If user input is valid, return user input
+            if (userInput == "1")
             {
-                Country country = new Country();
-                try { country.Name = rset.getString("Name");} catch (Exception e){country.Name = null;};
-                try { country.Continent = rset.getString("Continent");} catch (Exception e){country.Continent = null;};
-                try { country.Region = rset.getString("Region");} catch (Exception e){country.Region = null;};
-                try { country.SurfaceArea = rset.getInt("SurfaceArea");} catch (Exception e){country.SurfaceArea = 0.0;};
-                try { country.IndepYear = rset.getInt("IndepYear");} catch (Exception e){country.IndepYear = 0000;};
-                try { country.Population = rset.getInt("Population");} catch (Exception e){country.Population = 0;};
-                try { country.LifeExpectancy = rset.getInt("LifeExpectancy");} catch (Exception e){country.LifeExpectancy = 0.0;};
-                try { country.GNP = rset.getInt("GNP");} catch (Exception e){country.GNP = 0.0;};
-                try { country.GNPOld = rset.getInt("GNPOld");} catch (Exception e){country.GNPOld = 0.0;};
-                try { country.LocalName = rset.getString("LocalName");} catch (Exception e){country.LocalName = null;};
-                try { country.GovernmentForm = rset.getString("GovernmentForm");} catch (Exception e){country.GovernmentForm = null;};
-                try { country.HeadOfState = rset.getString("HeadOfState");} catch (Exception e){country.HeadOfState = null;};
-                try { country.Capital = rset.getString("Capital");} catch (Exception e){country.Capital = null;};
-                try { country.Code2 = rset.getString("Code2");} catch (Exception e){country.Code2 = null;};
-                country.displayTable();
+                return userInput;
             }
-            getQuery(selectQuery());
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get countries details");
-        }
+            //If user input is invalid, throw error message and ask again
+            else if (userInput == "2" || userInput == "3"
+                    || userInput == "4")
+            {
+                validInput = false;
+                System.out.println("ERROR: Option currently unavailable");
+            }
+            else
+            {
+                System.out.println("ERROR: Invalid option selected");
+                validInput = false;
+            }
+        } while (validInput == false);
+        return null;
     }
+
+    /*
+    public boolean secondMenu()
+    {
+        //If user input is valid, display next set of options depending on selection
+        validInput = true;
+        boolean validInput2 = false;
+        do
+        {
+            //If user selects "All the countries in..."
+            if (userInput == "1")
+            {
+                //Display options
+                System.out.println("All the countries in...");
+                System.out.println("1. The world");
+                System.out.println("2. A particular continent");
+                System.out.println("3. A particular region");
+
+                //Read user input
+                String userInput2 = scanner.next();
+
+                //If user input is invalid, throw error message and ask again
+                if (userInput2 == "1" || userInput2 == "2" || userInput2 == "3")
+                {
+                    //If user selects "All the countries in the world"
+                    if (userInput2 == "1")
+                    {
+                        //Display all the countries in the world
+                        validInput2 = true;
+                        DisplayResults dr = new DisplayResults();
+                        dr.countriesInWorld();
+                    }
+                    else
+                    {
+                        //Prevent other options from being selected until functionality is implemented
+                        System.out.println("ERROR: This option is currently unavailable.");
+                        validInput2 = false;
+                    }
+                }
+                else
+                {
+                    System.out.println("ERROR: Invalid option selected");
+                    validInput2 = false;
+                }
+            }
+            //Prevent other options being selected until functionality is implemented
+            else
+            {
+                System.out.println("ERROR: This option is currently unavailable.");
+                validInput2 = false;
+            }
+        } while (validInput2 == false);
+    }
+    */
 }
