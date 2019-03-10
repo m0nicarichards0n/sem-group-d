@@ -206,15 +206,16 @@ public class App {
                 //If user wants to see the population of...
                 case "4":
                     switch (populationMenu()) {
-                        //...people living in cities and not living in cities in a particular continent
+                        //...people living in cities and not living in cities in each continent
                         case "1":
-                            //display appropriate results
+                            //Display table showing population living/not living in cities in each continent
+                            displayResults.livingInCitiesInContinents();
                             break;
-                        //...people living in cities and not living in cities in a particular region
+                        //...people living in cities and not living in cities in each region
                         case "2":
                             //display appropriate results
                             break;
-                        //...people living in cities and not living in cities in a particular country
+                        //...people living in cities and not living in cities in each country
                         case "3":
                             //display appropriate results
                             break;
@@ -318,9 +319,9 @@ public class App {
     public String populationMenu() {
         //Display population options
         System.out.println("The population of...");
-        System.out.println("1. People living in cities and not living in cities in a particular continent");
-        System.out.println("2. People living in cities and not living in cities in a particular region");
-        System.out.println("3. People living in cities and not living in cities in a particular country");
+        System.out.println("1. People living in cities and not living in cities in each continent");
+        System.out.println("2. People living in cities and not living in cities in each region");
+        System.out.println("3. People living in cities and not living in cities in each country");
         System.out.println("4. The world");
         System.out.println("5. A particular continent");
         System.out.println("6. A particular region");
