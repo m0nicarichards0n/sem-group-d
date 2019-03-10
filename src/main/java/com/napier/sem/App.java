@@ -122,7 +122,8 @@ public class App {
                     switch (citiesMenu()) {
                         //...the world
                         case "1":
-                            //display cities in the world
+                            //Display all cities in the world
+                            displayResults.citiesInWorld();
                             break;
                         //...a particular continent
                         case "2":

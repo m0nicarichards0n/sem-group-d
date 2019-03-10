@@ -17,7 +17,9 @@ public class Country
     //Returns a list of all countries in the World/Continent/Region depending on parameter input
     public ArrayList<Country> getCountries(String category, String name)
     {
+        //Clear out any previous results
         listOfCountries.clear();
+
         //To get all the countries in the world...
         if (category == "inWorld" && name == null)
         {
