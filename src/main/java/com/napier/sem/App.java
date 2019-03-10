@@ -1,106 +1,54 @@
 package com.napier.sem;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class App
-{
-    public static void main(String[] args)
-    {
+public class App {
+    public static void main(String[] args) {
         // Create new Application
         App a = new App();
+
         // Connect to database
         a.connect();
-        // call sql query
-        String query = a.selectQuery();
-        a.getQuery(query);
+
+        // Display user options and display appropriate tables based on request
+        a.displayUserSelection();
 
         // Disconnect from database
         a.disconnect();
-    }
-    private String selectQuery(){
-        String query ="";
-        System.out.println("Available reports: ");
-        System.out.println("1. All the countries in the world organised by largest population to smallest.");
-        System.out.println("2. All the countries in a continent organised by largest population to smallest");
-        System.out.println("3. All the countries in a region organised by largest population to smallest.");
-        System.out.println("4. The top N populated countries in the world where N is provided by the user.");
-        System.out.println("5. The top N populated countries in a continent where N is provided by the user.");
-        System.out.println("Please select report number: ");
-        Scanner scanner = new Scanner(System.in);
-        String reportNumber = scanner.next();
-
-        String N;
-        switch (reportNumber){
-            case "1":
-                query = "SELECT name FROM country ORDER BY population DESC";
-                break;
-            case "2":
-                query = "SELECT name, continent, population FROM country ORDER BY continent, population DESC";
-                break;
-            case "3":
-                query = "SELECT name, region, population FROM country ORDER BY region, population DESC";
-                break;
-            case "4":
-                System.out.println("How many top populated countries in the world would you like to see? ");
-                scanner = new Scanner(System.in);
-                N = scanner.nextLine();
-                System.out.println("SELECT name, population FROM country ORDER BY population DESC LIMIT " + N);
-                query = "SELECT name, population FROM country ORDER BY population DESC LIMIT " + N;
-                break;
-            case "5":
-                System.out.println("How many top populated countries in a continent would you like to see? ");
-                scanner = new Scanner(System.in);
-                N = scanner.nextLine();
-                query = "SELECT name, population FROM country WHERE Continent = 'Europe' ORDER BY population DESC LIMIT " + N;
-                break;
-        }
-
-        return query;
     }
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    public static Connection con = null;
 
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
-    {
-        try
-        {
+    public void connect() {
+        try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(10000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -109,64 +57,232 @@ public class App
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
+    public void disconnect() {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
     }
-    public void getQuery(String query)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
 
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(query);
-            // Check one is returned
-            ResultSetMetaData rsmd = rset.getMetaData();
-            ArrayList<String> result  = new ArrayList<String>();
-            for (int i = 0; i<rsmd.getColumnCount(); i++){
-                System.out.print(rsmd.getColumnName(i+1) + " | ");
-                result.add(rsmd.getColumnName(i+1));
-            }
-            System.out.print("\n");
-            while (rset.next())
-            {
-                Country country = new Country();
-                try { country.Name = rset.getString("Name");} catch (Exception e){country.Name = null;};
-                try { country.Continent = rset.getString("Continent");} catch (Exception e){country.Continent = null;};
-                try { country.Region = rset.getString("Region");} catch (Exception e){country.Region = null;};
-                try { country.SurfaceArea = rset.getInt("SurfaceArea");} catch (Exception e){country.SurfaceArea = 0.0;};
-                try { country.IndepYear = rset.getInt("IndepYear");} catch (Exception e){country.IndepYear = 0000;};
-                try { country.Population = rset.getInt("Population");} catch (Exception e){country.Population = 0;};
-                try { country.LifeExpectancy = rset.getInt("LifeExpectancy");} catch (Exception e){country.LifeExpectancy = 0.0;};
-                try { country.GNP = rset.getInt("GNP");} catch (Exception e){country.GNP = 0.0;};
-                try { country.GNPOld = rset.getInt("GNPOld");} catch (Exception e){country.GNPOld = 0.0;};
-                try { country.LocalName = rset.getString("LocalName");} catch (Exception e){country.LocalName = null;};
-                try { country.GovernmentForm = rset.getString("GovernmentForm");} catch (Exception e){country.GovernmentForm = null;};
-                try { country.HeadOfState = rset.getString("HeadOfState");} catch (Exception e){country.HeadOfState = null;};
-                try { country.Capital = rset.getString("Capital");} catch (Exception e){country.Capital = null;};
-                try { country.Code2 = rset.getString("Code2");} catch (Exception e){country.Code2 = null;};
-                country.displayTable();
-            }
-            getQuery(selectQuery());
-        }
-        catch (Exception e)
+    public void displayUserSelection() {
+
+        boolean repeat = true;
+        //Instantiate new set of results
+        DisplayResults displayResults = new DisplayResults();
+
+        while (repeat)
         {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get countries details");
+            //Display main menu
+            mainMenu();
+            //Read user input
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.next();
+
+            //Based on user input, return different table
+            switch (userInput) {
+                //If user wants to see all the countries in...
+                case "1":
+                    switch (countriesMenu()) {
+                        //...the world
+                        case "1":
+                            //Display all countries in the world
+                            displayResults.countriesInWorld();
+                            break;
+                        //...a particular  continent
+                        case "2":
+                            //display countries in that particular continent
+                            break;
+                        //...a particular region
+                        case "3":
+                            //display countries in a particular region
+                            break;
+                        //return to main menu if user presses 'x'
+                        case "x":
+                            break;
+                    }
+                    break;
+                //If user wants to see all the cities in...
+                case "2":
+                    switch (citiesMenu()) {
+                        //...the world
+                        case "1":
+                            //display cities in the world
+                            break;
+                        //...a particular continent
+                        case "2":
+                            //display cities in that continent
+                            break;
+                        //...a particular region
+                        case "3":
+                            //display cities in that region
+                            break;
+                        //...a particular country
+                        case "4":
+                            //display cities in that country
+                            break;
+                        //...a particular district
+                        case "5":
+                            //display cities in that district
+                            break;
+                        //return to main menu if user presses 'x'
+                        case "x":
+                            break;
+                    }
+                    break;
+                //If user wants to see all the capital cities in...
+                case "3":
+                    switch (capitalCitiesMenu()) {
+                        //...the world
+                        case "1":
+                            //Display all countries in the world
+                            displayResults.countriesInWorld();
+                            break;
+                        //...a particular  continent
+                        case "2":
+                            //display countries in that particular continent
+                            break;
+                        //...a particular region
+                        case "3":
+                            //display countries in a particular region
+                            break;
+                        //return to main menu if user presses 'x'
+                        case "x":
+                            break;
+                    }
+                    break;
+                //If user wants to see the population of...
+                case "4":
+                    switch (populationMenu()) {
+                        //...people living in cities and not living in cities in a particular continent
+                        case "1":
+                            //display appropriate results
+                            break;
+                        //...people living in cities and not living in cities in a particular region
+                        case "2":
+                            //display appropriate results
+                            break;
+                        //...people living in cities and not living in cities in a particular country
+                        case "3":
+                            //display appropriate results
+                            break;
+                        //...the world
+                        case "4":
+                            //display appropriate results
+                            break;
+                        //...a particular continent
+                        case "5":
+                            //display appropriate results
+                            break;
+                        //...a particular region
+                        case "6":
+                            //display appropriate results
+                            break;
+                        //...a particular country
+                        case "7":
+                            //display appropriate results
+                            break;
+                        //...a particular district
+                        case "8":
+                            //display appropriate results
+                            break;
+                        //...a particular city
+                        case "9":
+                            //display appropriate results
+                            break;
+                        //return to main menu if user presses 'x'
+                        case "x":
+                            break;
+                    }
+                    break;
+                //If user presses 'x' to exit the programme
+                case "x":
+                    repeat = false;
+                break;
+            }
         }
+    }
+
+    public void mainMenu() {
+
+        //Display main menu options
+        System.out.println("Welcome to the Population Database!");
+        System.out.println("I would like to view...");
+        System.out.println("1. All the countries in...");
+        System.out.println("2. All the cities in...");
+        System.out.println("3. All the capital cities in...");
+        System.out.println("4. The population of...");
+        System.out.println("Press 'x' to exit the programme");
+
+    }
+
+    public String countriesMenu() {
+
+        //Display country options
+        System.out.println("All the countries in...");
+        System.out.println("1. The world");
+        System.out.println("2. A particular continent");
+        System.out.println("3. A particular region");
+        System.out.println("Press 'x' to return to the main menu");
+
+        //Return user input
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.next();
+        return userInput;
+    }
+
+    public String citiesMenu() {
+
+        //Display city options
+        System.out.println("All the cities in...");
+        System.out.println("1. The world");
+        System.out.println("2. A particular continent");
+        System.out.println("3. A particular region");
+        System.out.println("4. A particular country");
+        System.out.println("5. A particular district");
+        System.out.println("Press 'x' to return to the main menu");
+
+        //Return user input
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.next();
+        return userInput;
+    }
+
+    public String capitalCitiesMenu() {
+
+        //Display capital city options
+        System.out.println("All the capital cities in...");
+        System.out.println("1. The world");
+        System.out.println("2. A particular continent");
+        System.out.println("3. A particular region");
+        System.out.println("Press 'x' to return to the main menu");
+
+        //Return user input
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.next();
+        return userInput;
+    }
+
+    public String populationMenu() {
+        //Display population options
+        System.out.println("The population of...");
+        System.out.println("1. People living in cities and not living in cities in a particular continent");
+        System.out.println("2. People living in cities and not living in cities in a particular region");
+        System.out.println("3. People living in cities and not living in cities in a particular country");
+        System.out.println("4. The world");
+        System.out.println("5. A particular continent");
+        System.out.println("6. A particular region");
+        System.out.println("7. A particular country");
+        System.out.println("8. A particular district");
+        System.out.println("9. A particular city");
+        System.out.println("Press 'x' to return to the main menu");
+
+        //Return user input
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.next();
+        return userInput;
     }
 }
