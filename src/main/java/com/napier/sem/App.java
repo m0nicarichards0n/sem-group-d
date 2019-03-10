@@ -94,7 +94,12 @@ public class App {
                             break;
                         //...a particular  continent
                         case "2":
-                            //display countries in that particular continent
+                            //Ask which continent
+                            System.out.println("Which continent?");
+                            //Read user input
+                            String continent = scanner.next();
+                            //Display all countries in that particular continent
+                            displayResults.countriesInContinent(continent);
                             break;
                         //...a particular region
                         case "3":
