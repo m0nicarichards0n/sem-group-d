@@ -8,6 +8,8 @@ public class DisplayResults {
     City cit = new City();
     //Instantiate Capital City class
     CapitalCity capCit = new CapitalCity();
+    //Instantiate Living In Cities class
+    LivingInCities lic = new LivingInCities();
 
     //Print table of results for all Countries in the World (Population largest to smallest)
     public void countriesInWorld()
@@ -290,6 +292,34 @@ public class DisplayResults {
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
+
+    //Print table of results for those living/not living in cities in each continent (Population largest to smallest)
+    public void livingInCitiesInContinents()
+    {
+        //Check that there is data to display
+        if (lic.getLivingInCities("inContinents") != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%20s %20s %20s %20s %20s %20s", "Continent", "Total Population", "Pop. In Cities",
+                    "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
+            System.out.println();
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            for (LivingInCities lic: lic.getLivingInCities("inContinents"))
+            {
+                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getContinent(), lic.getPopulation(),
+                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
+                        lic.getPercentageNotInCities());
+                System.out.println();
+            }
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
         }
         //If there is no data to display, print error message
         else
