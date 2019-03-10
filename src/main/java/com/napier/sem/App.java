@@ -157,7 +157,13 @@ public class App {
                             break;
                         //...a particular district
                         case "5":
-                            //display cities in that district
+                            //Ask which district
+                            System.out.println("Which district?");
+                            //Read user input
+                            scanner.nextLine();
+                            String district = scanner.nextLine();
+                            //Display all cities in that particular district
+                            displayResults.citiesInDistrict(district);
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
