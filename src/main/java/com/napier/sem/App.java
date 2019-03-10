@@ -147,7 +147,13 @@ public class App {
                             break;
                         //...a particular country
                         case "4":
-                            //display cities in that country
+                            //Ask which country
+                            System.out.println("Which country?");
+                            //Read user input
+                            scanner.nextLine();
+                            String country = scanner.nextLine();
+                            //Display all cities in that particular country
+                            displayResults.citiesInCountry(country);
                             break;
                         //...a particular district
                         case "5":
