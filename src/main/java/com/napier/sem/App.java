@@ -137,7 +137,13 @@ public class App {
                             break;
                         //...a particular region
                         case "3":
-                            //display cities in that region
+                            //Ask which region
+                            System.out.println("Which region?");
+                            //Read user input
+                            scanner.nextLine();
+                            String region = scanner.nextLine();
+                            //Display all cities in that particular region
+                            displayResults.citiesInRegion(region);
                             break;
                         //...a particular country
                         case "4":
