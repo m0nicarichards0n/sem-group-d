@@ -72,6 +72,7 @@ public class Country
                 return null;
             }
         }
+        //To get all the countries in a specific continent
         if (category == "inContinent" && name != null)
         {
             try
@@ -88,6 +89,61 @@ public class Country
                         + "city.Name AS 'Capital' "
                         + "FROM country JOIN city ON country.Capital = city.ID "
                         + "WHERE country.Continent = '" + name + "' "
+                        + "ORDER BY population DESC;";
+
+                //Execute SQL statement
+                ResultSet result = stmt.executeQuery(strQuery);
+
+                //Iterate through results
+                while (result.next())
+                {
+                    //Get information for each country/row in table
+                    Country cou = new Country();
+                    cou.Code = result.getString("Code");
+                    cou.Name = result.getString("Country");
+                    cou.Continent = result.getString("Continent");
+                    cou.Region = result.getString("Region");
+                    cou.Population = result.getInt("Population");
+                    cou.Capital = result.getString("Capital");
+
+                    //Store each country to list
+                    listOfCountries.add(cou);
+                }
+
+                //Check that countries were found
+                if (listOfCountries.isEmpty()) {
+                    return null;
+                }
+                else
+                {
+                    //As long as countries were found, return the list of all countries
+                    return listOfCountries;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get details of all the countries in this continent");
+                return null;
+            }
+        }
+        //To get all the countries in a specific region
+        if (category == "inRegion" && name != null)
+        {
+            try
+            {
+                // Create SQL statement
+                Statement stmt = App.con.createStatement();
+
+                // Create SQL Query as string
+                String strQuery = "SELECT country.Code AS 'Code', "
+                        + "country.Name AS 'Country', "
+                        + "country.Continent AS 'Continent', "
+                        + "country.Region AS 'Region', "
+                        + "country.Population AS 'Population', "
+                        + "city.Name AS 'Capital' "
+                        + "FROM country JOIN city ON country.Capital = city.ID "
+                        + "WHERE country.Region = '" + name + "' "
                         + "ORDER BY population DESC;";
 
                 //Execute SQL statement

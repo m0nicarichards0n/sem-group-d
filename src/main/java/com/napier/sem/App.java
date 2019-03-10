@@ -97,13 +97,20 @@ public class App {
                             //Ask which continent
                             System.out.println("Which continent?");
                             //Read user input
-                            String continent = scanner.next();
+                            scanner.nextLine();
+                            String continent = scanner.nextLine();
                             //Display all countries in that particular continent
                             displayResults.countriesInContinent(continent);
                             break;
                         //...a particular region
                         case "3":
-                            //display countries in a particular region
+                            //Ask which region
+                            System.out.println("Which region?");
+                            //Read user input
+                            scanner.nextLine();
+                            String region = scanner.nextLine();
+                            //Display all countries in that particular region
+                            displayResults.countriesInRegion(region);
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
