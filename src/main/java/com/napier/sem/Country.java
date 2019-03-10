@@ -74,7 +74,7 @@ public class Country
         return null;
     }
 
-    //Public getters to retrieve information from other classes
+    //Public getters to retrieve country information from other classes
     public String getCode()
     {
         return Code;
