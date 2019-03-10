@@ -175,12 +175,18 @@ public class App {
                     switch (capitalCitiesMenu()) {
                         //...the world
                         case "1":
-                            //Display all countries in the world
+                            //Display all capital cities in the world
                             displayResults.capitalCitiesInWorld();
                             break;
                         //...a particular  continent
                         case "2":
-                            //display countries in that particular continent
+                            //Ask which continent
+                            System.out.println("Which continent?");
+                            //Read user input
+                            scanner.nextLine();
+                            String continent = scanner.nextLine();
+                            //Display all capital cities in that particular continent
+                            displayResults.capitalCitiesInContinent(continent);
                             break;
                         //...a particular region
                         case "3":
