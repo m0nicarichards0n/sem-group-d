@@ -190,7 +190,13 @@ public class App {
                             break;
                         //...a particular region
                         case "3":
-                            //display countries in a particular region
+                            //Ask which region
+                            System.out.println("Which region?");
+                            //Read user input
+                            scanner.nextLine();
+                            String region = scanner.nextLine();
+                            //Display all capital cities in that particular region
+                            displayResults.capitalCitiesInRegion(region);
                             break;
                         //return to main menu if user presses 'x'
                         case "x":

@@ -271,4 +271,30 @@ public class DisplayResults {
             System.out.println("No results to display.");
         }
     }
+
+    //Print table of results for all Capital Cities in a particular region (Population largest to smallest)
+    public void capitalCitiesInRegion(String nameOfRegion)
+    {
+        //Check that there is data to display
+        if (capCit.getCapitalCities("inRegion", nameOfRegion) != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%40s %30s %30s", "Capital City", "Country", "Population");
+            System.out.println();
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            for (CapitalCity capCit: capCit.getCapitalCities("inRegion", nameOfRegion))
+            {
+                System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
+                        capCit.getPopulation());
+                System.out.println();
+            }
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
 }
