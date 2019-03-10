@@ -176,7 +176,7 @@ public class App {
                         //...the world
                         case "1":
                             //Display all countries in the world
-                            displayResults.countriesInWorld();
+                            displayResults.capitalCitiesInWorld();
                             break;
                         //...a particular  continent
                         case "2":
