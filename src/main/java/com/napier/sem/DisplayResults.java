@@ -6,6 +6,8 @@ public class DisplayResults {
     Country cou = new Country();
     //Instantiate City class
     City cit = new City();
+    //Instantiate Capital City class
+    CapitalCity capCit = new CapitalCity();
 
     //Print table of results for all Countries in the World (Population largest to smallest)
     public void countriesInWorld()
@@ -207,6 +209,32 @@ public class DisplayResults {
             {
                 System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
                         cit.getDistrict(), cit.getPopulation());
+                System.out.println();
+            }
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
+
+    //Print table of results for all Capital Cities in the world (Population largest to smallest)
+    public void capitalCitiesInWorld()
+    {
+        //Check that there is data to display
+        if (capCit.getCapitalCities("inWorld", null) != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%40s %30s %30s", "Capital City", "Country", "Population");
+            System.out.println();
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            for (CapitalCity capCit: capCit.getCapitalCities("inWorld", null))
+            {
+                System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
+                        capCit.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
