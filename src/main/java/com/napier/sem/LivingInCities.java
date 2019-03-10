@@ -1,7 +1,5 @@
 package com.napier.sem;
 
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
-
 import java.util.ArrayList;
 import java.sql.*;
 
