@@ -191,4 +191,30 @@ public class DisplayResults {
             System.out.println("No results to display.");
         }
     }
+
+    //Print table of results for all Cities in a particular district (Population largest to smallest)
+    public void citiesInDistrict(String nameOfDistrict)
+    {
+        //Check that there is data to display
+        if (cit.getCities("inDistrict", nameOfDistrict) != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
+            System.out.println();
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+            for (City cit: cit.getCities("inDistrict", nameOfDistrict))
+            {
+                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
+                        cit.getDistrict(), cit.getPopulation());
+                System.out.println();
+            }
+            System.out.println("-----------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
 }

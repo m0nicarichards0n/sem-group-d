@@ -206,6 +206,50 @@ public class City {
                 return null;
             }
         }
+        //To get all the cities in a particular district
+        if (category == "inDistrict" && name != null) {
+            try {
+                // Create SQL statement
+                Statement stmt = App.con.createStatement();
+
+                // Create SQL Query as string
+                String strQuery = "SELECT city.Name AS 'City', "
+                        + "country.Name AS 'Country', "
+                        + "city.District AS 'District', "
+                        + "city.Population AS 'Population' "
+                        + "FROM city JOIN country ON city.CountryCode = country.Code "
+                        + "WHERE city.District = '" + name + "' "
+                        + "ORDER BY population DESC";
+
+                //Execute SQL statement
+                ResultSet result = stmt.executeQuery(strQuery);
+
+                //Iterate through results
+                while (result.next()) {
+                    //Get information for each city/row in table
+                    City cit = new City();
+                    cit.Name = result.getString("City");
+                    cit.Country = result.getString("Country");
+                    cit.District = result.getString("District");
+                    cit.Population = result.getInt("Population");
+
+                    //Store each city to list
+                    listOfCities.add(cit);
+                }
+
+                //Check that cities were found
+                if (listOfCities.isEmpty()) {
+                    return null;
+                } else {
+                    //As long as cities were found, return the list of all cities
+                    return listOfCities;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get details of all the cities in this district");
+                return null;
+            }
+        }
         return null;
     }
 
