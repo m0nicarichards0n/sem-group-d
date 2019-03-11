@@ -27,13 +27,13 @@ public class App {
      * Connect to the MySQL database.
      */
     public void connect() {
-        try {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
+//        try {
+//            // Load Database driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Could not load SQL driver");
+//            System.exit(-1);
+//        }
 
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
