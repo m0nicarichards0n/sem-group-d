@@ -18,7 +18,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("db");
+        app.connect("localhost:3306");
     }
 
     @Test
