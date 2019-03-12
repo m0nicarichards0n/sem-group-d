@@ -220,7 +220,8 @@ public class App {
                             break;
                         //...people living in cities and not living in cities in each region
                         case "2":
-                            //display appropriate results
+                            //Display table showing population living/not living in cities in each region
+                            displayResults.livingInCitiesInRegions();
                             break;
                         //...people living in cities and not living in cities in each country
                         case "3":
