@@ -43,7 +43,7 @@ public class CapitalCity {
                     capCit.Country = result.getString("Country");
                     capCit.Population = result.getInt("Population");
 
-                    //Store each city to list
+                    //Store each capital city to list
                     listOfCapitalCities.add(capCit);
                 }
 
@@ -53,7 +53,7 @@ public class CapitalCity {
                 }
                 else
                 {
-                    //As long as cities were found, return the list of all cities
+                    //As long as capital cities were found, return the list of all capital cities
                     return listOfCapitalCities;
                 }
             }
@@ -92,17 +92,17 @@ public class CapitalCity {
                     capCit.Country = result.getString("Country");
                     capCit.Population = result.getInt("Population");
 
-                    //Store each city to list
+                    //Store each capital city to list
                     listOfCapitalCities.add(capCit);
                 }
 
-                //Check that capital cities were found
+                //Check that capital capital cities were found
                 if (listOfCapitalCities.isEmpty()) {
                     return null;
                 }
                 else
                 {
-                    //As long as cities were found, return the list of all cities
+                    //As long as capital cities were found, return the list of all capital cities
                     return listOfCapitalCities;
                 }
             }
@@ -141,7 +141,7 @@ public class CapitalCity {
                     capCit.Country = result.getString("Country");
                     capCit.Population = result.getInt("Population");
 
-                    //Store each city to list
+                    //Store each capital city to list
                     listOfCapitalCities.add(capCit);
                 }
 
@@ -151,14 +151,14 @@ public class CapitalCity {
                 }
                 else
                 {
-                    //As long as cities were found, return the list of all cities
+                    //As long as capital cities were found, return the list of all capital cities
                     return listOfCapitalCities;
                 }
             }
             catch (Exception e)
             {
                 System.out.println(e.getMessage());
-                System.out.println("Failed to get details of all the capital cities in this continent");
+                System.out.println("Failed to get details of all the capital cities in this region");
                 return null;
             }
         }

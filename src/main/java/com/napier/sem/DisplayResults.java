@@ -355,4 +355,32 @@ public class DisplayResults {
             System.out.println("No results to display.");
         }
     }
+
+    //Print table of results for those living/not living in cities in each country (Population largest to smallest)
+    public void livingInCitiesInCountries()
+    {
+        //Check that there is data to display
+        if (lic.getLivingInCities("inCountries") != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%20s %20s %20s %20s %20s %20s", "Country", "Total Population", "Pop. In Cities",
+                    "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
+            System.out.println();
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            for (LivingInCities lic: lic.getLivingInCities("inCountries"))
+            {
+                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getCountry(), lic.getPopulation(),
+                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
+                        lic.getPercentageNotInCities());
+                System.out.println();
+            }
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
 }
