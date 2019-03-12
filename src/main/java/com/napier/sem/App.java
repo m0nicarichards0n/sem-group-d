@@ -65,7 +65,7 @@ public class App {
      * Disconnect from the MySQL database.
      */
     public void disconnect() {
-        if (con != null) {
+            if (con != null) {
             try {
                 // Close connection
                 con.close();
