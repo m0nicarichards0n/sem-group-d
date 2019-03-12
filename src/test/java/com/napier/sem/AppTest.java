@@ -19,13 +19,13 @@ public class AppTest
         app = new App();
     }
 
-//    @Test
-//    void connection_test()
-//    {
-//        String location = "localhost:33060";
-//        app.connect(location);
-//        assertNotNull(app.con);
-//    }
+    @Test
+    void connection_test()
+    {
+        String location = "localhost:33060";
+        app.connect(location);
+        assertNotNull(app.con);
+    }
 //    @Test
 //    void disconnection_Close() throws SQLException {
 //        String location = "localhost:33060";
