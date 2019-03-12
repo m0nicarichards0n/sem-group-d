@@ -225,7 +225,8 @@ public class App {
                             break;
                         //...people living in cities and not living in cities in each country
                         case "3":
-                            //display appropriate results
+                            //Display table showing population living/not living in cities in each country
+                            displayResults.livingInCitiesInCountries();
                             break;
                         //...the world
                         case "4":
