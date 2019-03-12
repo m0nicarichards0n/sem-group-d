@@ -45,16 +45,8 @@ public class Country
                 while (result.next())
                 {
                     //Get information for each country/row in table
-                    Country cou = new Country();
-                    cou.Code = result.getString("Code");
-                    cou.Name = result.getString("Country");
-                    cou.Continent = result.getString("Continent");
-                    cou.Region = result.getString("Region");
-                    cou.Population = result.getInt("Population");
-                    cou.Capital = result.getString("Capital");
-
                     //Store each country to list
-                    listOfCountries.add(cou);
+                    listOfCountries.add(resultsToList(result));
                 }
 
                 //Check that countries were found
@@ -100,16 +92,8 @@ public class Country
                 while (result.next())
                 {
                     //Get information for each country/row in table
-                    Country cou = new Country();
-                    cou.Code = result.getString("Code");
-                    cou.Name = result.getString("Country");
-                    cou.Continent = result.getString("Continent");
-                    cou.Region = result.getString("Region");
-                    cou.Population = result.getInt("Population");
-                    cou.Capital = result.getString("Capital");
-
                     //Store each country to list
-                    listOfCountries.add(cou);
+                    listOfCountries.add(resultsToList(result));
                 }
 
                 //Check that countries were found
@@ -155,16 +139,8 @@ public class Country
                 while (result.next())
                 {
                     //Get information for each country/row in table
-                    Country cou = new Country();
-                    cou.Code = result.getString("Code");
-                    cou.Name = result.getString("Country");
-                    cou.Continent = result.getString("Continent");
-                    cou.Region = result.getString("Region");
-                    cou.Population = result.getInt("Population");
-                    cou.Capital = result.getString("Capital");
-
                     //Store each country to list
-                    listOfCountries.add(cou);
+                    listOfCountries.add(resultsToList(result));
                 }
 
                 //Check that countries were found
@@ -185,6 +161,16 @@ public class Country
             }
         }
         return null;
+    }
+    private Country resultsToList(ResultSet result) throws SQLException {
+        Country cou = new Country();
+        cou.Code = result.getString("Code");
+        cou.Name = result.getString("Country");
+        cou.Continent = result.getString("Continent");
+        cou.Region = result.getString("Region");
+        cou.Population = result.getInt("Population");
+        cou.Capital = result.getString("Capital");
+        return cou;
     }
 
     //Public getters to retrieve country information from other classes
