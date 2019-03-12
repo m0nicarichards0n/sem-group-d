@@ -22,23 +22,65 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
-//    @Test
-//    void testGetCountries()
-//    {
-//        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//        //final PrintStream originalOut = System.out;
-//
-//        DisplayResults displayResults = new DisplayResults();
-//        System.setOut(new PrintStream(outContent));
-//        displayResults.countriesInWorld();
-//        assertEquals("-----------------------------------------------------------------------------------------------------------------\\r\\n",
-//                outContent.toString());
-//    }
     @Test
-    void testCountry(){
+    void testCountry_inWorld_null(){
         //should return list of countries sorted by population
         Country cou = new Country();
         List<Country> getCountryReturns = cou.getCountries("inWorld", null);
         assertEquals(getCountryReturns.get(0).getName(), "China");
+    }
+    @Test
+    void testCountry_inWorld_notNull(){
+        //should return null, when wrong name passed in
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inWorld", "!@#$%^&*()_+");
+        assertNull(getCountryReturns);
+    }
+
+    @Test
+    void testCountry_inContinent_null(){
+        //should return null if wrong passed null==null
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inContinent", null);
+        assertNull(getCountryReturns);
+    }
+    @Test
+    void testCountry_inContinent_notNull_butWrongName(){
+        //should return null, when wrong name passed in
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inContinent", "!@#$%^&*()_+");
+        assertNull(getCountryReturns);
+    }
+
+    @Test
+    void testCountry_inContinent_NotNull_correctName(){
+        //should return null, when wrong name passed in
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inContinent", "europe");
+        assertEquals(getCountryReturns.get(0).getName(), "Russian Federation");
+    }
+
+
+    @Test
+    void testCountry_inRegion_null(){
+        //should return null if wrong passed null==null
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inRegion", null);
+        assertNull(getCountryReturns);
+    }
+    @Test
+    void testCountry_inRegion_notNull_butWrongName(){
+        //should return null, when wrong name passed in
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inRegion", "!@#$%^&*()_+");
+        assertNull(getCountryReturns);
+    }
+
+    @Test
+    void testCountry_inRegion_NotNull_correctName(){
+        //should return null, when wrong name passed in
+        Country cou = new Country();
+        List<Country> getCountryReturns = cou.getCountries("inRegion", "Southern Europe");
+        assertEquals(getCountryReturns.get(0).getName(), "Italy");
     }
 }
