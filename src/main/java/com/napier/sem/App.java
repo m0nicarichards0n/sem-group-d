@@ -230,7 +230,8 @@ public class App {
                             break;
                         //...the world
                         case "4":
-                            //display appropriate results
+                            //Display the population of the world
+                            displayResults.populationOfTheWorld();
                             break;
                         //...a particular continent
                         case "5":
