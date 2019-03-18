@@ -10,6 +10,8 @@ public class DisplayResults {
     CapitalCity capCit = new CapitalCity();
     //Instantiate Living In Cities class
     LivingInCities lic = new LivingInCities();
+    //Instantiat General Population class
+    GeneralPop gp = new GeneralPop();
 
     //Print table of results for all Countries in the World (Population largest to smallest)
     public void countriesInWorld()
@@ -381,6 +383,22 @@ public class DisplayResults {
         else
         {
             System.out.println("No results to display.");
+        }
+    }
+
+    //Display population of the world
+    public void populationOfTheWorld()
+    {
+        //As long as the query doesn't return an error
+        if (gp.getWorldPop() != 0)
+        {
+            System.out.println();
+            System.out.println("The population of the world is: " + gp.getWorldPop());
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
         }
     }
 }
