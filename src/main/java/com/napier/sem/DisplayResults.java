@@ -417,4 +417,20 @@ public class DisplayResults {
             System.out.println("No result to display.");
         }
     }
+
+    //Display population of a particular region
+    public void populationOfRegion(String region)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getRegionPop(region) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + region + " is: " + gp.getRegionPop(region));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
 }

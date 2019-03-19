@@ -240,12 +240,18 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String continent = scanner.nextLine();
-                            //Display all capital cities in that particular region
+                            //Display the population of that continent
                             displayResults.populationOfContinent(continent);
                             break;
                         //...a particular region
                         case "6":
-                            //display appropriate results
+                            //Ask which region
+                            System.out.println("Which region?");
+                            //Read user input
+                            scanner.nextLine();
+                            String region = scanner.nextLine();
+                            //Display the population of that region
+                            displayResults.populationOfRegion(region);
                             break;
                         //...a particular country
                         case "7":
