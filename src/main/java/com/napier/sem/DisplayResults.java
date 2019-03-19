@@ -401,4 +401,20 @@ public class DisplayResults {
             System.out.println("No result to display.");
         }
     }
+
+    //Display population of a particular continent
+    public void populationOfContinent(String continent)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getContinentPop(continent) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + continent + " is: " + gp.getContinentPop(continent));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
 }
