@@ -265,7 +265,13 @@ public class App {
                             break;
                         //...a particular district
                         case "8":
-                            //display appropriate results
+                            //Ask which district
+                            System.out.println("Which district?");
+                            //Read user input
+                            scanner.nextLine();
+                            String district = scanner.nextLine();
+                            //Display the population of that district
+                            displayResults.populationOfDistrict(district);
                             break;
                         //...a particular city
                         case "9":
