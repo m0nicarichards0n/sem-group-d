@@ -433,4 +433,20 @@ public class DisplayResults {
             System.out.println("No result to display.");
         }
     }
+
+    //Display population of a particular country
+    public void populationOfCountry(String country)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getCountryPop(country) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + country + " is: " + gp.getCountryPop(country));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
 }
