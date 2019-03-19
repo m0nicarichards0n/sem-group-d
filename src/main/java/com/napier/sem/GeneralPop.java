@@ -90,7 +90,7 @@ public class GeneralPop {
         }
     }
 
-    //Returns the population of particular region
+    //Returns the population of a particular region
     public long getRegionPop(String region)
     {
         try
@@ -133,4 +133,44 @@ public class GeneralPop {
         }
     }
 
+    //Returns the population of a particular country
+    public long getCountryPop(String country)
+    {
+        try
+        {
+            //Local long to store result
+            long pop = 0;
+
+            // Create SQL statement
+            Statement stmt = App.con.createStatement();
+
+            // Create SQL Query as string
+            String strQuery = "SELECT country.Code AS 'Code', "
+                        + "country.Name AS 'Country', "
+                        + "country.Continent AS 'Continent', "
+                        + "country.Region AS 'Region', "
+                        + "country.Population AS 'Total Population Of Country', "
+                        + "city.Name AS 'Capital' "
+                        + "FROM country JOIN city ON country.Capital = city.ID "
+                        + "WHERE country.Name = '" + country + "'";
+
+            //Execute SQL statement
+            ResultSet result = stmt.executeQuery(strQuery);
+
+            while (result.next())
+            {
+                //Get country population value
+                pop = result.getLong("Total Population Of Country");
+            }
+
+            //Return country population value
+            return pop;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve the population of this country");
+            return 0;
+        }
+    }
 }

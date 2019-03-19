@@ -255,7 +255,13 @@ public class App {
                             break;
                         //...a particular country
                         case "7":
-                            //display appropriate results
+                            //Ask which country
+                            System.out.println("Which country?");
+                            //Read user input
+                            scanner.nextLine();
+                            String country = scanner.nextLine();
+                            //Display the population of that country
+                            displayResults.populationOfCountry(country);
                             break;
                         //...a particular district
                         case "8":
