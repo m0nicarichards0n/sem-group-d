@@ -173,4 +173,40 @@ public class GeneralPop {
             return 0;
         }
     }
+
+    //Returns the population of a particular district
+    public long getDistrictPop(String district)
+    {
+        try
+        {
+            //Local long to store result
+            long pop = 0;
+
+            // Create SQL statement
+            Statement stmt = App.con.createStatement();
+
+            // Create SQL Query as string
+            String strQuery = "SELECT SUM(city.Population) AS 'Total Population Of District' "
+                    + "FROM city JOIN country ON city.CountryCode = country.Code "
+                    + "WHERE city.District = '" + district + "'";
+
+            //Execute SQL statement
+            ResultSet result = stmt.executeQuery(strQuery);
+
+            while (result.next())
+            {
+                //Get district population value
+                pop = result.getLong("Total Population Of District");
+            }
+
+            //Return district population value
+            return pop;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve the population of this district");
+            return 0;
+        }
+    }
 }

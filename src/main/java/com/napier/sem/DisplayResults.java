@@ -449,4 +449,20 @@ public class DisplayResults {
             System.out.println("No result to display.");
         }
     }
+
+    //Display population of a particular district
+    public void populationOfDistrict(String district)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getDistrictPop(district) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + district + " is: " + gp.getDistrictPop(district));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
 }
