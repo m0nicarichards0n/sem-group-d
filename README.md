@@ -1,6 +1,6 @@
 # Group Project  
 ## SET08403 Software Engineering Methods  
-### Group D - Monica Richardson, Grzegorz Samociak, Rowan Whitton & Ewan Morrison  
+### Group D - Monica Richardson, Grzegorz Samociak & Rowan Whittonn  
 
 
 
