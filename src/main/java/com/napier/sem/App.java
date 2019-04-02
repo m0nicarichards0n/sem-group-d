@@ -275,7 +275,13 @@ public class App {
                             break;
                         //...a particular city
                         case "9":
-                            //display appropriate results
+                            //Ask which city
+                            System.out.println("Which city?");
+                            //Read user input
+                            scanner.nextLine();
+                            String city = scanner.nextLine();
+                            //Display the population of that city
+                            displayResults.populationOfCity(city);
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
