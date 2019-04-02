@@ -465,4 +465,21 @@ public class DisplayResults {
             System.out.println("No result to display.");
         }
     }
+
+    //Display population of a particular city
+    public void populationOfCity(String city)
+    {
+        long cityPop = gp.getCityPop(city);
+        //As long as the query doesn't return an error
+        if (cityPop != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + city + " is: " + cityPop);
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
 }
