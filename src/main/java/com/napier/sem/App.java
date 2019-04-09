@@ -47,7 +47,7 @@ public class App {
             System.out.println("Connecting to database...");
             try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(10000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://"+ location +"/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -65,7 +65,7 @@ public class App {
      * Disconnect from the MySQL database.
      */
     public void disconnect() {
-            if (con != null) {
+        if (con != null) {
             try {
                 // Close connection
                 con.close();

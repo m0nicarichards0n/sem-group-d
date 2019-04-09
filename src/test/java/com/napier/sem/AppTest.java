@@ -18,7 +18,6 @@ public class AppTest
     {
         app = new App();
     }
-
     @Test
     void connection_test()
     {
@@ -26,13 +25,13 @@ public class AppTest
         app.connect(location);
         assertNotNull(app.con);
     }
-//    @Test
-//    void disconnection_Close() throws SQLException {
-//        String location = "localhost:33060";
-//        app.connect(location).;
-//        app.disconnect();
-//        assertTrue(app.con.isClosed());
-//    }
+    @Test
+    void disconnection_Close() throws SQLException {
+        String location = "localhost:33060";
+        app.connect(location);
+        app.disconnect();
+        assertTrue(app.con.isClosed());
+    }
 //    @Test
 //    void disconnection_CloseCatch() {
 //        assertThrows(Exception.class, new Executable() {
@@ -43,7 +42,6 @@ public class AppTest
 //                app.disconnect();
 //            }
 //        });
-//
 //    }
     @Test
     void test_countriesMenu(){
