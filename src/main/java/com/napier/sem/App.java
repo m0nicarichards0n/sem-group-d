@@ -80,6 +80,8 @@ public class App {
         boolean repeat = true;
         //Instantiate new set of results
         DisplayResults displayResults = new DisplayResults();
+        //Instantiate new set of limited results
+        DisplayLimitedResults displayLimitedResults = new DisplayLimitedResults();
 
         while (repeat)
         {
@@ -96,8 +98,32 @@ public class App {
                     switch (countriesMenu()) {
                         //...the world
                         case "1":
-                            //Display all countries in the world
-                            displayResults.countriesInWorld();
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of countries displayed? (y/n)");
+                            //Read user input
+                            scanner.nextLine();
+                            String limitCountries = scanner.nextLine();
+                            if (limitCountries.equals("y"))
+                            {
+                                //Ask how many countries to display
+                                System.out.println("How many of the top populated countries in the world do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.countriesInWorld(Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limitCountries.equals("n"))
+                            {
+                                //Display all countries in the world
+                                displayResults.countriesInWorld();
+                            }
                             break;
                         //...a particular  continent
                         case "2":
