@@ -220,35 +220,68 @@ public class App {
                             break;
                         //...people living in cities and not living in cities in each region
                         case "2":
-                            //display appropriate results
+                            //Display table showing population living/not living in cities in each region
+                            displayResults.livingInCitiesInRegions();
                             break;
                         //...people living in cities and not living in cities in each country
                         case "3":
-                            //display appropriate results
+                            //Display table showing population living/not living in cities in each country
+                            displayResults.livingInCitiesInCountries();
                             break;
                         //...the world
                         case "4":
-                            //display appropriate results
+                            //Display the population of the world
+                            displayResults.populationOfTheWorld();
                             break;
                         //...a particular continent
                         case "5":
-                            //display appropriate results
+                            //Ask which continent
+                            System.out.println("Which continent?");
+                            //Read user input
+                            scanner.nextLine();
+                            String continent = scanner.nextLine();
+                            //Display the population of that continent
+                            displayResults.populationOfContinent(continent);
                             break;
                         //...a particular region
                         case "6":
-                            //display appropriate results
+                            //Ask which region
+                            System.out.println("Which region?");
+                            //Read user input
+                            scanner.nextLine();
+                            String region = scanner.nextLine();
+                            //Display the population of that region
+                            displayResults.populationOfRegion(region);
                             break;
                         //...a particular country
                         case "7":
-                            //display appropriate results
+                            //Ask which country
+                            System.out.println("Which country?");
+                            //Read user input
+                            scanner.nextLine();
+                            String country = scanner.nextLine();
+                            //Display the population of that country
+                            displayResults.populationOfCountry(country);
                             break;
                         //...a particular district
                         case "8":
-                            //display appropriate results
+                            //Ask which district
+                            System.out.println("Which district?");
+                            //Read user input
+                            scanner.nextLine();
+                            String district = scanner.nextLine();
+                            //Display the population of that district
+                            displayResults.populationOfDistrict(district);
                             break;
                         //...a particular city
                         case "9":
-                            //display appropriate results
+                            //Ask which city
+                            System.out.println("Which city?");
+                            //Read user input
+                            scanner.nextLine();
+                            String city = scanner.nextLine();
+                            //Display the population of that city
+                            displayResults.populationOfCity(city);
                             break;
                         //return to main menu if user presses 'x'
                         case "x":

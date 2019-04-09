@@ -10,6 +10,8 @@ public class DisplayResults {
     CapitalCity capCit = new CapitalCity();
     //Instantiate Living In Cities class
     LivingInCities lic = new LivingInCities();
+    //Instantiat General Population class
+    GeneralPop gp = new GeneralPop();
 
     //Print table of results for all Countries in the World (Population largest to smallest)
     public void countriesInWorld()
@@ -325,6 +327,159 @@ public class DisplayResults {
         else
         {
             System.out.println("No results to display.");
+        }
+    }
+
+    //Print table of results for those living/not living in cities in each region (Population largest to smallest)
+    public void livingInCitiesInRegions()
+    {
+        //Check that there is data to display
+        if (lic.getLivingInCities("inRegions") != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%20s %20s %20s %20s %20s %20s", "Region", "Total Population", "Pop. In Cities",
+                    "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
+            System.out.println();
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            for (LivingInCities lic: lic.getLivingInCities("inRegions"))
+            {
+                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getRegion(), lic.getPopulation(),
+                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
+                        lic.getPercentageNotInCities());
+                System.out.println();
+            }
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
+
+    //Print table of results for those living/not living in cities in each country (Population largest to smallest)
+    public void livingInCitiesInCountries()
+    {
+        //Check that there is data to display
+        if (lic.getLivingInCities("inCountries") != null)
+        {
+            //If there is data to display, display data in table format
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%20s %20s %20s %20s %20s %20s", "Country", "Total Population", "Pop. In Cities",
+                    "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
+            System.out.println();
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+            for (LivingInCities lic: lic.getLivingInCities("inCountries"))
+            {
+                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getCountry(), lic.getPopulation(),
+                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
+                        lic.getPercentageNotInCities());
+                System.out.println();
+            }
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        }
+        //If there is no data to display, print error message
+        else
+        {
+            System.out.println("No results to display.");
+        }
+    }
+
+    //Display population of the world
+    public void populationOfTheWorld()
+    {
+        //As long as the query doesn't return an error
+        if (gp.getWorldPop() != 0)
+        {
+            System.out.println();
+            System.out.println("The population of the world is: " + gp.getWorldPop());
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
+
+    //Display population of a particular continent
+    public void populationOfContinent(String continent)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getContinentPop(continent) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + continent + " is: " + gp.getContinentPop(continent));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
+
+    //Display population of a particular region
+    public void populationOfRegion(String region)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getRegionPop(region) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + region + " is: " + gp.getRegionPop(region));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
+
+    //Display population of a particular country
+    public void populationOfCountry(String country)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getCountryPop(country) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + country + " is: " + gp.getCountryPop(country));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
+
+    //Display population of a particular district
+    public void populationOfDistrict(String district)
+    {
+        //As long as the query doesn't return an error
+        if (gp.getDistrictPop(district) != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + district + " is: " + gp.getDistrictPop(district));
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
+        }
+    }
+
+    //Display population of a particular city
+    public void populationOfCity(String city)
+    {
+        long cityPop = gp.getCityPop(city);
+        //As long as the query doesn't return an error
+        if (cityPop != 0)
+        {
+            System.out.println();
+            System.out.println("The population of " + city + " is: " + cityPop);
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("No result to display.");
         }
     }
 }

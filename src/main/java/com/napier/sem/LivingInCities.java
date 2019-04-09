@@ -60,7 +60,7 @@ public class LivingInCities {
                     lic.NotInCities = result.getLong("Total Population NOT Living In Cities");
                     lic.PercentageNotInCities = result.getDouble("Population NOT Living In Cities (%)");
 
-                    //Store each city to list
+                    //Store each continent to list
                     listLivingInCities.add(lic);
                 }
 
@@ -78,6 +78,129 @@ public class LivingInCities {
             {
                 System.out.println(e.getMessage());
                 System.out.println("Failed to get details of all those living/not living in each continent");
+                return null;
+            }
+        }
+        //To find how many people are living/not living in cities in each region...
+        if (category == "inRegions")
+        {
+            try
+            {
+                // Create SQL statement
+                Statement stmt = App.con.createStatement();
+
+                // Create SQL Query as string
+                String strQuery = "SELECT sub1.Region, SUM(sub1.Population) AS 'Total Population', "
+                        + "sub2.Population AS 'Total Population Living In Cities', "
+                        + "100 - ROUND(((SUM(sub1.Population) - sub2.Population)*100)/SUM(sub1.Population), 1) AS 'Population Living In Cities (%)', "
+                        + "SUM(sub1.Population) - sub2.Population AS 'Total Population NOT Living In Cities', "
+                        + "ROUND(((SUM(sub1.Population) - sub2.Population)*100)/SUM(sub1.Population), 1) AS 'Population NOT Living In Cities (%)' "
+                        + "FROM (SELECT country.Region AS 'Region', SUM(country.Population) AS 'Population' "
+                        + "FROM country "
+                        + "GROUP BY country.Region) AS sub1, "
+                        + "(SELECT country.Region AS 'Region', SUM(city.Population) AS 'Population' "
+                        + "FROM country JOIN city ON country.Code = city.CountryCode "
+                        + "GROUP BY country.Region) AS sub2 "
+                        + "WHERE sub2.Region = sub1.Region "
+                        + "GROUP BY sub1.Region "
+                        + "ORDER BY SUM(sub1.Population) DESC";
+
+
+                //Execute SQL statement
+                ResultSet result = stmt.executeQuery(strQuery);
+
+                //Iterate through results
+                while (result.next())
+                {
+                    //Get information for each region/row in table
+                    LivingInCities lic = new LivingInCities();
+                    lic.Region = result.getString("Region");
+                    lic.Population = result.getLong("Total Population");
+                    lic.LivingInCities = result.getLong("Total Population Living In Cities");
+                    lic.PercentageInCities = result.getDouble("Population Living In Cities (%)");
+                    lic.NotInCities = result.getLong("Total Population NOT Living In Cities");
+                    lic.PercentageNotInCities = result.getDouble("Population NOT Living In Cities (%)");
+
+                    //Store each region to list
+                    listLivingInCities.add(lic);
+                }
+
+                //Check that regions were found
+                if (listLivingInCities.isEmpty()) {
+                    return null;
+                }
+                else
+                {
+                    //As long as regions were found, return the list of all regions
+                    return listLivingInCities;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get details of all those living/not living in each region");
+                return null;
+            }
+        }
+        //To find how many people are living/not living in cities in each country...
+        if (category == "inCountries")
+        {
+            try
+            {
+                // Create SQL statement
+                Statement stmt = App.con.createStatement();
+
+                // Create SQL Query as string
+                String strQuery = "SELECT sub1.Country, SUM(sub1.Population) AS 'Total Population', "
+                            + "sub2.Population AS 'Total Population Living In Cities', "
+                            + "100 - ROUND(((SUM(sub1.Population) - sub2.Population)*100)/SUM(sub1.Population), 1) AS 'Population Living In Cities (%)', "
+                            + "SUM(sub1.Population) - sub2.Population AS 'Total Population NOT Living In Cities', "
+                            + "ROUND(((SUM(sub1.Population) - sub2.Population)*100)/SUM(sub1.Population), 1) AS 'Population NOT Living In Cities (%)' "
+                            + "FROM"
+                            + "(SELECT country.Name AS 'Country', SUM(country.Population) AS 'Population' "
+                            + "FROM country "
+                            + "GROUP BY country.Name) AS sub1, "
+                            + "(SELECT country.Name AS 'Country', SUM(city.Population) AS 'Population' "
+                            + "FROM country JOIN city ON country.Code = city.CountryCode "
+                            + "GROUP BY country.Name) AS sub2 "
+                            + "WHERE sub2.Country = sub1.Country "
+                            + "GROUP BY sub1.Country "
+                            + "ORDER BY SUM(sub1.Population) DESC";
+
+
+                //Execute SQL statement
+                ResultSet result = stmt.executeQuery(strQuery);
+
+                //Iterate through results
+                while (result.next())
+                {
+                    //Get information for each country/row in table
+                    LivingInCities lic = new LivingInCities();
+                    lic.Country = result.getString("Country");
+                    lic.Population = result.getLong("Total Population");
+                    lic.LivingInCities = result.getLong("Total Population Living In Cities");
+                    lic.PercentageInCities = result.getDouble("Population Living In Cities (%)");
+                    lic.NotInCities = result.getLong("Total Population NOT Living In Cities");
+                    lic.PercentageNotInCities = result.getDouble("Population NOT Living In Cities (%)");
+
+                    //Store each country to list
+                    listLivingInCities.add(lic);
+                }
+
+                //Check that countries were found
+                if (listLivingInCities.isEmpty()) {
+                    return null;
+                }
+                else
+                {
+                    //As long as countries were found, return the list of all countries
+                    return listLivingInCities;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get details of all those living/not living in each country");
                 return null;
             }
         }

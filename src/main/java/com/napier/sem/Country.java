@@ -156,7 +156,7 @@ public class Country
             catch (Exception e)
             {
                 System.out.println(e.getMessage());
-                System.out.println("Failed to get details of all the countries in this continent");
+                System.out.println("Failed to get details of all the countries in this region");
                 return null;
             }
         }
