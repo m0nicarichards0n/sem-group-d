@@ -102,8 +102,8 @@ public class App {
                             System.out.println("Do you wish to limit the number of countries displayed? (y/n)");
                             //Read user input
                             scanner.nextLine();
-                            String limitCountries = scanner.nextLine();
-                            if (limitCountries.equals("y"))
+                            String limit1 = scanner.nextLine();
+                            if (limit1.equals("y"))
                             {
                                 //Ask how many countries to display
                                 System.out.println("How many of the top populated countries in the world do you wish to see?");
@@ -119,7 +119,7 @@ public class App {
                                     break;
                                 }
                             }
-                            else if (limitCountries.equals("n"))
+                            else if (limit1.equals("n"))
                             {
                                 //Display all countries in the world
                                 displayResults.countriesInWorld();
@@ -132,8 +132,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String continent = scanner.nextLine();
-                            //Display all countries in that particular continent
-                            displayResults.countriesInContinent(continent);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of countries displayed? (y/n)");
+                            //Read user input
+                            String limit2 = scanner.nextLine();
+                            if (limit2.equals("y")) {
+                                //Ask how many countries to display
+                                System.out.println("How many of the top populated countries in this continent do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.countriesInContinent(continent, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit2.equals("n"))
+                            {
+                                //Display all countries in that particular continent
+                                displayResults.countriesInContinent(continent);
+                            }
                             break;
                         //...a particular region
                         case "3":
@@ -142,8 +164,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String region = scanner.nextLine();
-                            //Display all countries in that particular region
-                            displayResults.countriesInRegion(region);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of countries displayed? (y/n)");
+                            //Read user input
+                            String limit3 = scanner.nextLine();
+                            if (limit3.equals("y")) {
+                                //Ask how many countries to display
+                                System.out.println("How many of the top populated countries in this region do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.countriesInRegion(region, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit3.equals("n"))
+                            {
+                                //Display all countries in that particular region
+                                displayResults.countriesInRegion(region);
+                            }
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
@@ -155,8 +199,30 @@ public class App {
                     switch (citiesMenu()) {
                         //...the world
                         case "1":
-                            //Display all cities in the world
-                            displayResults.citiesInWorld();
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
+                            //Read user input
+                            String limit4 = scanner.nextLine();
+                            if (limit4.equals("y")) {
+                                //Ask how many cities to display
+                                System.out.println("How many of the top populated cities in the world do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.citiesInWorld(Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit4.equals("n"))
+                            {
+                                //Display all cities in the world
+                                displayResults.citiesInWorld();
+                            }
                             break;
                         //...a particular continent
                         case "2":
@@ -165,8 +231,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String continent = scanner.nextLine();
-                            //Display all cities in that particular continent
-                            displayResults.citiesInContinent(continent);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
+                            //Read user input
+                            String limit5 = scanner.nextLine();
+                            if (limit5.equals("y")) {
+                                //Ask how many countries to display
+                                System.out.println("How many of the top populated cities in this continent do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.citiesInContinent(continent, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit5.equals("n"))
+                            {
+                                //Display all cities in that particular continent
+                                displayResults.citiesInContinent(continent);
+                            }
                             break;
                         //...a particular region
                         case "3":
@@ -175,8 +263,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String region = scanner.nextLine();
-                            //Display all cities in that particular region
-                            displayResults.citiesInRegion(region);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
+                            //Read user input
+                            String limit6 = scanner.nextLine();
+                            if (limit6.equals("y")) {
+                                //Ask how many cities to display
+                                System.out.println("How many of the top populated cities in this region do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.citiesInRegion(region, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit6.equals("n"))
+                            {
+                                //Display all cities in that particular region
+                                displayResults.citiesInRegion(region);
+                            }
                             break;
                         //...a particular country
                         case "4":
@@ -185,8 +295,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String country = scanner.nextLine();
-                            //Display all cities in that particular country
-                            displayResults.citiesInCountry(country);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
+                            //Read user input
+                            String limit7 = scanner.nextLine();
+                            if (limit7.equals("y")) {
+                                //Ask how many cities to display
+                                System.out.println("How many of the top populated cities in this country do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.citiesInCountry(country, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit7.equals("n"))
+                            {
+                                //Display all cities in that particular country
+                                displayResults.citiesInCountry(country);
+                            }
                             break;
                         //...a particular district
                         case "5":
@@ -195,8 +327,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String district = scanner.nextLine();
-                            //Display all cities in that particular district
-                            displayResults.citiesInDistrict(district);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
+                            //Read user input
+                            String limit8 = scanner.nextLine();
+                            if (limit8.equals("y")) {
+                                //Ask how many cities to display
+                                System.out.println("How many of the top populated cities in this district do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.citiesInDistrict(district, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit8.equals("n"))
+                            {
+                                //Display all cities in that particular district
+                                displayResults.citiesInDistrict(district);
+                            }
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
@@ -208,8 +362,30 @@ public class App {
                     switch (capitalCitiesMenu()) {
                         //...the world
                         case "1":
-                            //Display all capital cities in the world
-                            displayResults.capitalCitiesInWorld();
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of capital cities displayed? (y/n)");
+                            //Read user input
+                            String limit9 = scanner.nextLine();
+                            if (limit9.equals("y")) {
+                                //Ask how many capital cities to display
+                                System.out.println("How many of the top populated capital cities in the world do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.capitalCitiesInWorld(Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit9.equals("n"))
+                            {
+                                //Display all capital cities in the world
+                                displayResults.capitalCitiesInWorld();
+                            }
                             break;
                         //...a particular  continent
                         case "2":
@@ -218,8 +394,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String continent = scanner.nextLine();
-                            //Display all capital cities in that particular continent
-                            displayResults.capitalCitiesInContinent(continent);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of capital cities displayed? (y/n)");
+                            //Read user input
+                            String limit10 = scanner.nextLine();
+                            if (limit10.equals("y")) {
+                                //Ask how many capital cities to display
+                                System.out.println("How many of the top populated capital cities in this continent do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.capitalCitiesInContinent(continent, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit10.equals("n"))
+                            {
+                                //Display all capital cities in that particular continent
+                                displayResults.capitalCitiesInContinent(continent);
+                            }
                             break;
                         //...a particular region
                         case "3":
@@ -228,8 +426,30 @@ public class App {
                             //Read user input
                             scanner.nextLine();
                             String region = scanner.nextLine();
-                            //Display all capital cities in that particular region
-                            displayResults.capitalCitiesInRegion(region);
+                            //Ask if user wishes to limit the number of results displayed
+                            System.out.println("Do you wish to limit the number of capital cities displayed? (y/n)");
+                            //Read user input
+                            String limit11 = scanner.nextLine();
+                            if (limit11.equals("y")) {
+                                //Ask how many capital cities to display
+                                System.out.println("How many of the top populated capital cities in this region do you wish to see?");
+                                //Read user input
+                                String howMany = scanner.nextLine();
+                                try
+                                {
+                                    displayLimitedResults.capitalCitiesInRegion(region, Integer.parseInt(howMany));
+                                }
+                                catch(Exception e)
+                                {
+                                    System.out.println("Invalid user input");
+                                    break;
+                                }
+                            }
+                            else if (limit11.equals("n"))
+                            {
+                                //Display all capital cities in that particular region
+                                displayResults.capitalCitiesInRegion(region);
+                            }
                             break;
                         //return to main menu if user presses 'x'
                         case "x":
