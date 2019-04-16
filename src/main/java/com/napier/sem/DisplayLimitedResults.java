@@ -1,6 +1,6 @@
 package com.napier.sem;
 
-public class DisplayResults {
+public class DisplayLimitedResults {
 
     //Instantiate Country class
     Country cou = new Country();
@@ -10,11 +10,9 @@ public class DisplayResults {
     CapitalCity capCit = new CapitalCity();
     //Instantiate Living In Cities class
     LivingInCities lic = new LivingInCities();
-    //Instantiate General Population class
-    GeneralPop gp = new GeneralPop();
 
     //Print table of results for all Countries in the World (Population largest to smallest)
-    public void countriesInWorld()
+    public void countriesInWorld(int limit)
     {
         //Check that there is data to display
         if (cou.getCountries("inWorld",null) != null)
@@ -24,11 +22,12 @@ public class DisplayResults {
             System.out.printf("%s %37s %15s %25s %10s %13s", "Code", "Country", "Continent", "Region", "Population", "Capital");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (Country cou: cou.getCountries("inWorld", null))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%s %37s %15s %25s %10s %13s", cou.getCode(), cou.getName(),
-                        cou.getContinent(), cou.getRegion(), cou.getPopulation(),
-                        cou.getCapital());
+                Country c = cou.getCountries("inWorld", null).get(i);
+                System.out.format("%s %37s %15s %25s %10s %13s", c.getCode(), c.getName(),
+                        c.getContinent(), c.getRegion(), c.getPopulation(),
+                        c.getCapital());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -41,7 +40,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Countries in a particular Continent (Population largest to smallest)
-    public void countriesInContinent(String nameOfContinent)
+    public void countriesInContinent(String nameOfContinent, int limit)
     {
         //Check that there is data to display
         if (cou.getCountries("inContinent", nameOfContinent) != null)
@@ -51,11 +50,12 @@ public class DisplayResults {
             System.out.printf("%s %37s %15s %25s %10s %13s", "Code", "Country", "Continent", "Region", "Population", "Capital");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (Country cou: cou.getCountries("inContinent", nameOfContinent))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%s %37s %15s %25s %10s %13s", cou.getCode(), cou.getName(),
-                        cou.getContinent(), cou.getRegion(), cou.getPopulation(),
-                        cou.getCapital());
+                Country c = cou.getCountries("inContinent", nameOfContinent).get(i);
+                System.out.format("%s %37s %15s %25s %10s %13s", c.getCode(), c.getName(),
+                        c.getContinent(), c.getRegion(), c.getPopulation(),
+                        c.getCapital());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -68,7 +68,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Countries in a particular Region (Population largest to smallest
-    public void countriesInRegion(String nameOfRegion)
+    public void countriesInRegion(String nameOfRegion, int limit)
     {
         //Check that there is data to display
         if (cou.getCountries("inRegion", nameOfRegion) != null)
@@ -78,11 +78,12 @@ public class DisplayResults {
             System.out.printf("%s %37s %15s %25s %10s %13s", "Code", "Country", "Continent", "Region", "Population", "Capital");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (Country cou: cou.getCountries("inRegion", nameOfRegion))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%s %37s %15s %25s %10s %13s", cou.getCode(), cou.getName(),
-                        cou.getContinent(), cou.getRegion(), cou.getPopulation(),
-                        cou.getCapital());
+                Country c = cou.getCountries("inRegion", nameOfRegion).get(i);
+                System.out.format("%s %37s %15s %25s %10s %13s", c.getCode(), c.getName(),
+                        c.getContinent(), c.getRegion(), c.getPopulation(),
+                        c.getCapital());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -95,7 +96,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Cities in the world (Population largest to smallest)
-    public void citiesInWorld()
+    public void citiesInWorld(int limit)
     {
         //Check that there is data to display
         if (cit.getCities("inWorld", null) != null)
@@ -105,10 +106,11 @@ public class DisplayResults {
             System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (City cit: cit.getCities("inWorld", null))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
-                        cit.getDistrict(), cit.getPopulation());
+                City c = cit.getCities("inWorld", null).get(i);
+                System.out.format("%25s %25s %25s %25s", c.getName(), c.getCountry(),
+                        c.getDistrict(), c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -121,7 +123,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Cities in a particular continent (Population largest to smallest)
-    public void citiesInContinent(String nameOfContinent)
+    public void citiesInContinent(String nameOfContinent, int limit)
     {
         //Check that there is data to display
         if (cit.getCities("inContinent", nameOfContinent) != null)
@@ -131,10 +133,11 @@ public class DisplayResults {
             System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (City cit: cit.getCities("inContinent", nameOfContinent))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
-                        cit.getDistrict(), cit.getPopulation());
+                City c = cit.getCities("inContinent", nameOfContinent).get(i);
+                System.out.format("%25s %25s %25s %25s", c.getName(), c.getCountry(),
+                        c.getDistrict(), c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -147,7 +150,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Cities in a particular region (Population largest to smallest)
-    public void citiesInRegion(String nameOfRegion)
+    public void citiesInRegion(String nameOfRegion, int limit)
     {
         //Check that there is data to display
         if (cit.getCities("inRegion", nameOfRegion) != null)
@@ -157,10 +160,11 @@ public class DisplayResults {
             System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (City cit: cit.getCities("inRegion", nameOfRegion))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
-                        cit.getDistrict(), cit.getPopulation());
+                City c = cit.getCities("inRegion", nameOfRegion).get(i);
+                System.out.format("%25s %25s %25s %25s", c.getName(), c.getCountry(),
+                        c.getDistrict(), c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -173,7 +177,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Cities in a particular country (Population largest to smallest)
-    public void citiesInCountry(String nameOfCountry)
+    public void citiesInCountry(String nameOfCountry, int limit)
     {
         //Check that there is data to display
         if (cit.getCities("inCountry", nameOfCountry) != null)
@@ -183,10 +187,11 @@ public class DisplayResults {
             System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (City cit: cit.getCities("inCountry", nameOfCountry))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
-                        cit.getDistrict(), cit.getPopulation());
+                City c = cit.getCities("inCountry", nameOfCountry).get(i);
+                System.out.format("%25s %25s %25s %25s", c.getName(), c.getCountry(),
+                        c.getDistrict(), c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -199,7 +204,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Cities in a particular district (Population largest to smallest)
-    public void citiesInDistrict(String nameOfDistrict)
+    public void citiesInDistrict(String nameOfDistrict, int limit)
     {
         //Check that there is data to display
         if (cit.getCities("inDistrict", nameOfDistrict) != null)
@@ -209,10 +214,11 @@ public class DisplayResults {
             System.out.printf("%25s %25s %25s %25s", "City", "Country", "District", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (City cit: cit.getCities("inDistrict", nameOfDistrict))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%25s %25s %25s %25s", cit.getName(), cit.getCountry(),
-                        cit.getDistrict(), cit.getPopulation());
+                City c = cit.getCities("inDistrict", nameOfDistrict).get(i);
+                System.out.format("%25s %25s %25s %25s", c.getName(), c.getCountry(),
+                        c.getDistrict(), c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -225,7 +231,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Capital Cities in the world (Population largest to smallest)
-    public void capitalCitiesInWorld()
+    public void capitalCitiesInWorld(int limit)
     {
         //Check that there is data to display
         if (capCit.getCapitalCities("inWorld", null) != null)
@@ -235,10 +241,11 @@ public class DisplayResults {
             System.out.printf("%40s %30s %30s", "Capital City", "Country", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (CapitalCity capCit: capCit.getCapitalCities("inWorld", null))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
-                        capCit.getPopulation());
+                CapitalCity c = capCit.getCapitalCities("inWorld", null).get(i);
+                System.out.format("%40s %30s %30s", c.getName(), c.getCountry(),
+                        c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -251,7 +258,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Capital Cities in a particular continent (Population largest to smallest)
-    public void capitalCitiesInContinent(String nameOfContinent)
+    public void capitalCitiesInContinent(String nameOfContinent, int limit)
     {
         //Check that there is data to display
         if (capCit.getCapitalCities("inContinent", nameOfContinent) != null)
@@ -261,10 +268,11 @@ public class DisplayResults {
             System.out.printf("%40s %30s %30s", "Capital City", "Country", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (CapitalCity capCit: capCit.getCapitalCities("inContinent", nameOfContinent))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
-                        capCit.getPopulation());
+                CapitalCity c = capCit.getCapitalCities("inContinent", nameOfContinent).get(i);
+                System.out.format("%40s %30s %30s", c.getName(), c.getCountry(),
+                        c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
@@ -277,7 +285,7 @@ public class DisplayResults {
     }
 
     //Print table of results for all Capital Cities in a particular region (Population largest to smallest)
-    public void capitalCitiesInRegion(String nameOfRegion)
+    public void capitalCitiesInRegion(String nameOfRegion, int limit)
     {
         //Check that there is data to display
         if (capCit.getCapitalCities("inRegion", nameOfRegion) != null)
@@ -287,8 +295,9 @@ public class DisplayResults {
             System.out.printf("%40s %30s %30s", "Capital City", "Country", "Population");
             System.out.println();
             System.out.println("-----------------------------------------------------------------------------------------------------------------");
-            for (CapitalCity capCit: capCit.getCapitalCities("inRegion", nameOfRegion))
+            for (int i = 0; i < limit; i++)
             {
+                CapitalCity c = capCit.getCapitalCities("inRegion", nameOfRegion).get(i);
                 System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
                         capCit.getPopulation());
                 System.out.println();
@@ -303,7 +312,7 @@ public class DisplayResults {
     }
 
     //Print table of results for those living/not living in cities in each continent (Population largest to smallest)
-    public void livingInCitiesInContinents()
+    public void livingInCitiesInContinents(int limit)
     {
         //Check that there is data to display
         if (lic.getLivingInCities("inContinents") != null)
@@ -314,11 +323,12 @@ public class DisplayResults {
                     "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
             System.out.println();
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-            for (LivingInCities lic: lic.getLivingInCities("inContinents"))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getContinent(), lic.getPopulation(),
-                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
-                        lic.getPercentageNotInCities());
+                LivingInCities lc = lic.getLivingInCities("inContinents").get(i);
+                System.out.format("%20s %20s %20s %20s %20s %20s", lc.getContinent(), lc.getPopulation(),
+                        lc.getLivingInCities(), lc.getPercentageInCities(), lc.getNotInCities(),
+                        lc.getPercentageNotInCities());
                 System.out.println();
             }
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
@@ -331,7 +341,7 @@ public class DisplayResults {
     }
 
     //Print table of results for those living/not living in cities in each region (Population largest to smallest)
-    public void livingInCitiesInRegions()
+    public void livingInCitiesInRegions(int limit)
     {
         //Check that there is data to display
         if (lic.getLivingInCities("inRegions") != null)
@@ -342,11 +352,12 @@ public class DisplayResults {
                     "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
             System.out.println();
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-            for (LivingInCities lic: lic.getLivingInCities("inRegions"))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getRegion(), lic.getPopulation(),
-                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
-                        lic.getPercentageNotInCities());
+                LivingInCities lc = lic.getLivingInCities("inRegions").get(i);
+                System.out.format("%20s %20s %20s %20s %20s %20s", lc.getRegion(), lc.getPopulation(),
+                        lc.getLivingInCities(), lc.getPercentageInCities(), lc.getNotInCities(),
+                        lc.getPercentageNotInCities());
                 System.out.println();
             }
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
@@ -359,7 +370,7 @@ public class DisplayResults {
     }
 
     //Print table of results for those living/not living in cities in each country (Population largest to smallest)
-    public void livingInCitiesInCountries()
+    public void livingInCitiesInCountries(int limit)
     {
         //Check that there is data to display
         if (lic.getLivingInCities("inCountries") != null)
@@ -370,11 +381,12 @@ public class DisplayResults {
                     "% in Cities", "Pop NOT in Cities", "% NOT in Cities");
             System.out.println();
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-            for (LivingInCities lic: lic.getLivingInCities("inCountries"))
+            for (int i = 0; i < limit; i++)
             {
-                System.out.format("%20s %20s %20s %20s %20s %20s", lic.getCountry(), lic.getPopulation(),
-                        lic.getLivingInCities(), lic.getPercentageInCities(), lic.getNotInCities(),
-                        lic.getPercentageNotInCities());
+                LivingInCities lc = lic.getLivingInCities("inCountries").get(i);
+                System.out.format("%20s %20s %20s %20s %20s %20s", lc.getCountry(), lc.getPopulation(),
+                        lc.getLivingInCities(), lc.getPercentageInCities(), lc.getNotInCities(),
+                        lc.getPercentageNotInCities());
                 System.out.println();
             }
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
@@ -383,103 +395,6 @@ public class DisplayResults {
         else
         {
             System.out.println("No results to display.");
-        }
-    }
-
-    //Display population of the world
-    public void populationOfTheWorld()
-    {
-        //As long as the query doesn't return an error
-        if (gp.getWorldPop() != 0)
-        {
-            System.out.println();
-            System.out.println("The population of the world is: " + gp.getWorldPop());
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
-        }
-    }
-
-    //Display population of a particular continent
-    public void populationOfContinent(String continent)
-    {
-        //As long as the query doesn't return an error
-        if (gp.getContinentPop(continent) != 0)
-        {
-            System.out.println();
-            System.out.println("The population of " + continent + " is: " + gp.getContinentPop(continent));
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
-        }
-    }
-
-    //Display population of a particular region
-    public void populationOfRegion(String region)
-    {
-        //As long as the query doesn't return an error
-        if (gp.getRegionPop(region) != 0)
-        {
-            System.out.println();
-            System.out.println("The population of " + region + " is: " + gp.getRegionPop(region));
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
-        }
-    }
-
-    //Display population of a particular country
-    public void populationOfCountry(String country)
-    {
-        //As long as the query doesn't return an error
-        if (gp.getCountryPop(country) != 0)
-        {
-            System.out.println();
-            System.out.println("The population of " + country + " is: " + gp.getCountryPop(country));
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
-        }
-    }
-
-    //Display population of a particular district
-    public void populationOfDistrict(String district)
-    {
-        //As long as the query doesn't return an error
-        if (gp.getDistrictPop(district) != 0)
-        {
-            System.out.println();
-            System.out.println("The population of " + district + " is: " + gp.getDistrictPop(district));
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
-        }
-    }
-
-    //Display population of a particular city
-    public void populationOfCity(String city)
-    {
-        long cityPop = gp.getCityPop(city);
-        //As long as the query doesn't return an error
-        if (cityPop != 0)
-        {
-            System.out.println();
-            System.out.println("The population of " + city + " is: " + cityPop);
-            System.out.println();
-        }
-        else
-        {
-            System.out.println("No result to display.");
         }
     }
 }
