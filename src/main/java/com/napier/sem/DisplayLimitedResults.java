@@ -298,8 +298,8 @@ public class DisplayLimitedResults {
             for (int i = 0; i < limit; i++)
             {
                 CapitalCity c = capCit.getCapitalCities("inRegion", nameOfRegion).get(i);
-                System.out.format("%40s %30s %30s", capCit.getName(), capCit.getCountry(),
-                        capCit.getPopulation());
+                System.out.format("%40s %30s %30s", c.getName(), c.getCountry(),
+                        c.getPopulation());
                 System.out.println();
             }
             System.out.println("-----------------------------------------------------------------------------------------------------------------");

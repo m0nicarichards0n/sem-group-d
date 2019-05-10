@@ -202,6 +202,7 @@ public class App {
                             //Ask if user wishes to limit the number of results displayed
                             System.out.println("Do you wish to limit the number of cities displayed? (y/n)");
                             //Read user input
+                            scanner.nextLine();
                             String limit4 = scanner.nextLine();
                             if (limit4.equals("y")) {
                                 //Ask how many cities to display
@@ -365,6 +366,7 @@ public class App {
                             //Ask if user wishes to limit the number of results displayed
                             System.out.println("Do you wish to limit the number of capital cities displayed? (y/n)");
                             //Read user input
+                            scanner.nextLine();
                             String limit9 = scanner.nextLine();
                             if (limit9.equals("y")) {
                                 //Ask how many capital cities to display
